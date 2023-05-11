@@ -8,8 +8,9 @@ const Logo = () => {
 
   return (
     <Image
+      priority={true}
       alt="logo"
-      className="hidden md:block cursor-pointer"
+      className="hidden md:block cursor-pointer w-auto h-auto"
       width={100}
       height={100}
       src={"/images/logo.png"}
