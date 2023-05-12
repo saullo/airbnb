@@ -1,6 +1,8 @@
-import Navbar from "./components/Navbar";
 import "./globals.css";
+import RegisterModal from "./components/Modals/RegisterModal";
+import Navbar from "./components/Navbar";
 import { Nunito } from "next/font/google";
+import ToasterProvider from "./providers/ToasterProvider";
 
 export const metadata = {
   title: "Vacation Homes & Condo Rentals - Airbnb",
@@ -18,6 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
+        <ToasterProvider />
+        <RegisterModal />
         <Navbar />
         {children}
       </body>
