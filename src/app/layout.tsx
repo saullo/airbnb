@@ -1,8 +1,10 @@
 import "./globals.css";
-import RegisterModal from "./components/Modals/RegisterModal";
-import Navbar from "./components/Navbar";
 import { Nunito } from "next/font/google";
+import RegisterModal from "./components/Modals/RegisterModal";
+import LoginModal from "./components/Modals/LoginModal";
+import Navbar from "./components/Navbar";
 import ToasterProvider from "./providers/ToasterProvider";
+import getCurrentUser from "./actions/getCurrentUser";
 
 export const metadata = {
   title: "Vacation Homes & Condo Rentals - Airbnb",
@@ -12,17 +14,20 @@ export const metadata = {
 
 const nunito = Nunito({ subsets: ["latin"] });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
+
   return (
     <html lang="en">
       <body className={nunito.className}>
         <ToasterProvider />
+        <LoginModal />
         <RegisterModal />
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         {children}
       </body>
     </html>
